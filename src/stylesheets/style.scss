@@ -1,0 +1,128 @@
+@import './reset.scss';
+
+html {
+  font-size: 16px;
+}
+
+/*Global setups*/
+
+$margin: 1em;
+$black: #444;
+$gray: #ddd;
+$font-header: 1.2em;
+$white : #eee;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  @extend .flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.button {
+  @include border-radius(2px);
+  display: inline-block;
+  padding: calc(#{$margin} / 5);
+  margin: 0 $margin;
+  color: $white;
+  border: none;
+  outline: none;
+}
+.visible {
+  display: inline-block;
+  opacity: 1;
+}
+
+/*Header*/
+
+.header {
+  @extend .nav;
+  background-color: $black;
+  height: 50px;
+  h2 {
+    color: $white;
+    margin-left: $margin;
+    font-size: $font-header;
+  }
+}
+
+.shots {
+  @extend .flex-column;
+  text-align: center;
+  margin-top: $margin;
+  .nav {
+    justify-content: space-between;
+    h3 {
+      margin-left: $margin;
+      font-size: $font-header - 0.1;
+    }
+    .search {
+      margin-right: $margin;
+    }
+  }
+}
+
+/*Gallery*/
+
+.gallery {
+  @extend .flex-column;
+}
+
+.select-size {
+  align-self: flex-end;
+  margin-right: $margin;
+  span {
+    padding: calc(#{$margin} / 5);
+    background-color: $black;
+    color: $white;
+    border-radius: 2px;
+  }
+  .buttons{
+    @extend .flex;
+    position: absolute;
+    right: $margin;
+    background-color: $black;
+    span, button {
+      width: 50%;
+    }
+    button {
+      display: none;
+      opacity: 0;
+      background-color: rgba(0,0,0,0);
+    }    
+  }
+  .buttons:hover button {
+    @extend .visible;
+  }
+  span:hover ~ .buttons button {
+    @extend .visible;
+  }
+}
+
+.grid {
+  @extend .flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: $margin;
+  margin-top: $margin;
+  .shot {
+    flex-grow: 1;
+    padding: $margin / 2;
+    img {
+      width: 100%;
+    }
+  }
+}

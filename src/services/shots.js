@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const accessToken = '4b01a3ebb34e8dee92e77e627aa50587428bbd87b2fb7787b79d4798f23a1661';
+const accessToken = '96810bdceb6e5925b54a15a31f08cdca7ae7e1424298a755e25aaa9dbe4f2323';
 
 const shots = {
   getShots() {
     return axios.get(`https://api.dribbble.com/v1/shots?access_token=${accessToken}`);
   },
+
   getShot(id) {
     return axios.get(`https://api.dribbble.com/v1/shots/${id}?access_token=${accessToken}`);
   }

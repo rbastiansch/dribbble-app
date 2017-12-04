@@ -11,8 +11,8 @@ class ViewShot extends Component {
 
   componentDidMount() {
     const { id } = this.props.params;
-    shots.getShot(id).then((response) => {
-      const { data } = response;
+    shots.getShot(id).then(result => {
+      const { data } = result;
       this.setState({ shot: data });
     });
   }

@@ -1,27 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import App from './App';
-import Shots from './components/Shots';
-import ViewShot from './components/ViewShot';
+import { Router, browserHistory } from 'react-router';
 
-const render = (App) => ReactDOM.render(
-  <AppContainer>
+import routes from './routes';
+
+const router = (routes) => {
+  return (
     <Router history={browserHistory}>
-      <Route path="/" component={App} >
-        <IndexRoute component={Shots} />
-        <Route path="/shot/:id" component={ViewShot} />
-      </Route>
+      { routes() }
     </Router>
+  )
+}
+
+const render = routes => ReactDOM.render(
+  <AppContainer>
+    { router(routes) }
   </AppContainer>, document.getElementById('root')
 );
 
-render(App);
+render(routes);
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
+  module.hot.accept('./routes', () => {
+    const NextApp = require('./routes').default;
     render(NextApp);
   });
 }

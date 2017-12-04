@@ -12,6 +12,8 @@ $gray: #ddd;
 $font-header: 1.2em;
 $white : #eee;
 
+$break-mobile-normal: 767px;
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -56,6 +58,10 @@ $white : #eee;
     color: $white;
     margin-left: $margin;
     font-size: $font-header;
+    a {
+      text-decoration: none;
+      color: $white;
+    }
   }
 }
 
@@ -119,10 +125,52 @@ $white : #eee;
   padding: $margin;
   margin-top: $margin;
   .shot {
-    flex-grow: 1;
     padding: $margin / 2;
+    a {
+      text-decoration: none;
+      img {
+        width: 100%;
+      }
+      p {
+        color: $black;
+      }
+    }
+  }
+}
+
+/*Single*/
+
+.view-shot {
+  @extend .flex-column;
+  align-items: center;
+  margin: $margin;
+  background-color: $white;
+  .shot {
+    @extend .flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: $margin 0;
     img {
       width: 100%;
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+    }
+    .info {
+      @extend .flex;
+      flex-wrap: wrap;
+      margin: $margin;
+      @media screen and (min-width: $break-mobile-normal) {
+        flex-direction: column;
+      }
+      div {
+        margin: 0 $margin $margin 0;
+        a, span {
+          color: $black;
+        }
+        a {
+          margin-right: $margin / 3;
+          cursor: pointer;
+        }
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Shots from './components/Shots';
+import { Link }  from 'react-router';
 import './stylesheets/style.scss';
 
 class App extends Component {
@@ -7,9 +7,11 @@ class App extends Component {
     return (
       <div className="app">
         <div className="header">
-          <h2>Dribbble App</h2>
+          <h2>
+            <Link to="/">Dribbble App</Link>
+          </h2>
         </div>
-        <Shots />
+        {this.props.children}
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 const styles = {
   small: { flexBasis: '6em' },
@@ -11,6 +12,10 @@ class Gallery extends Component {
     this.state = {
       largeSize: true
     }
+  }
+
+  openShot() {
+    
   }
 
   render() {
@@ -36,8 +41,10 @@ class Gallery extends Component {
             shots.map((shot, key) => {
               return (
                 <div key={key} className="shot" style={largeSize ? styles.large : styles.small }>
-                  <img src={shot.images.normal} />
-                  <p>{shot.title}</p>
+                  <Link to={`/shot/${shot.id}`} >
+                    <img src={shot.images.normal} />
+                    <p>{shot.title}</p>
+                  </Link>
                 </div>
               )
             })

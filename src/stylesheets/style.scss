@@ -158,5 +158,8 @@ $break-mobile-normal: 767px;
     img {
       width: 100%;
     }
+    p {
+      margin-top: $margin / 3;
+    }
   }
 }

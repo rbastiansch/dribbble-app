@@ -11,7 +11,7 @@ const router = (routes) => {
       { routes() }
     </Router>
   )
-}
+};
 
 const render = routes => ReactDOM.render(
   <AppContainer>

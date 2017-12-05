@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Shot from './Shot';
+import shots from '../services/shots';
 
 const styles = {
-  small: { flexBasis: '6em' },
-  large: { flexBasis: '12em' }
+  small: { flexBasis: '8em' },
+  large: { flexBasis: '14em' }
 }
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shots: [],
       largeSize: true
     }
   }
 
-  openShot() {
-    
+  componentDidMount() {
+    shots.getShots().then((response) => {
+      const { data } = response;
+      this.setState({ shots: data});
+    });
   }
 
   render() {
-    const { shots } = this.props;
-    const { largeSize } = this.state;
+    const { shots, largeSize } = this.state;
     return(
       <div className="gallery">
         <div className="select-size">
@@ -40,10 +45,9 @@ class Gallery extends Component {
           {
             shots.map((shot, key) => {
               return (
-                <div key={key} className="shot" style={largeSize ? styles.large : styles.small }>
+                <div key={key} style={ largeSize ? styles.large : styles.small }>
                   <Link to={`/shot/${shot.id}`} >
-                    <img src={shot.images.normal} />
-                    <p>{shot.title}</p>
+                    <Shot shot={shot} />
                   </Link>
                 </div>
               )

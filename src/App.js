@@ -3,7 +3,6 @@ import { Link }  from 'react-router';
 import './stylesheets/style.scss';
 
 class App extends Component {
-
   render() {
     return (
       <div className="app">
